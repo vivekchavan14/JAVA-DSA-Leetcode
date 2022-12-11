@@ -1,12 +1,12 @@
-//https://leetcode.com/problems/missing-number/
+https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/
 
 class Solution {
-    public int missingNumber(int[] arr) {
+    public List<Integer> findDisappearedNumbers(int[] arr) {
         int i = 0;
-        while(i<arr.length)
+        while(i < arr.length)
         {
-            int correct = arr[i];
-            if(arr[i]<arr.length && arr[i]!=arr[correct])
+            int correct = arr[i]-1;
+            if(arr[i]!=arr[correct])
             {
                 swap(arr,i,correct);
             }
@@ -15,15 +15,15 @@ class Solution {
                 i++;
             }
         }
-        //search
+        List<Integer> ans = new ArrayList<>();
         for(int index = 0; index < arr.length; index++)
         {
-            if(arr[index]!=index)
+            if(arr[index]!=index+1)
             {
-                return index;
+                ans.add(index+1);
             }
         }
-        return arr.length;
+        return ans;
     }
     void swap(int[] arr,int start,int end)
     {
